@@ -1,4 +1,4 @@
-Time complexity=O(nln(n))
+Time complexity=O(nlog(n))
 #include<bits/stdc++.h>
 using namespace std;
 #define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
@@ -29,7 +29,7 @@ int main()
     }
 
     return 0;
-}//Total Time complexity=O(nln(n))
+}//Total Time complexity=O(nlog(n))
  
 Output:
 10
