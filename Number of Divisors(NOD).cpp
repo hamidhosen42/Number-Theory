@@ -1,49 +1,52 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-#define optimize()                \
-    ios_base::sync_with_stdio(0); \
-    cin.tie(0);                   \
-    cout.tie(0);
-#define fraction(a)               \
-    cout.unsetf(ios::floatfield); \
-    cout.precision(a);            \
-    cout.setf(ios::fixed, ios::floatfield);
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 #define endl '\n'
+
+vector<int> divisor[123];
 
 int main()
 {
     optimize();
 
     int n;
-    cin >> n;
+    cin>>n;
 
-    vector<int> divisor;
+    for(int i=1;i<=n;i++){
+        int sq=sqrt(i);
+        for(int j=1;j<=sq;j++){
+            if(i%j==0){
+                divisor[i].push_back(j);//<=sqrt(n)
 
-    int sq = sqrt(n);
-    for (int i = 1; i <= sq; i++)
-    {
-        if (n % i == 0)
-        {
-            divisor.push_back(i); //<=sqrt(n)
-
-            if (n / i != i)
-            {
-                divisor.push_back(n / i); ////>sqrt(n)
+                if(i/j !=j){
+                    divisor[i].push_back(i/j);////>sqrt(n)
+                }
             }
         }
     }
 
-    sort(divisor.begin(), divisor.end());
-
-    for (auto u : divisor)
-    {
-        cout << u << " ";
+    for(int i=1;i<=n;i++){
+        sort(divisor[i].begin(),divisor[i].end());
+        cout<<i<<" : ";
+        for(auto u:divisor[i]){
+            cout<<u<<" ";
+        }
+        cout<<endl;
     }
-    cout << endl;
 
     return 0;
-} //complexity=O(sqrt(n))
+}//complexity=O(n(sqrt(n))
 
-20
-1 2 4 5 10 20
+
+Output:
+10
+1: 1
+2: 1 2
+3: 1 3
+4: 1 2 4
+5: 1 5
+6: 1 2 3 6
+7: 1 7
+8: 1 2 4 8
+9: 1 3 9
+10: 1 2 5 10
