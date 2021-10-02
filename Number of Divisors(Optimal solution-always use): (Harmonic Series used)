@@ -1,0 +1,45 @@
+Time complexity=O(nln(n))
+#include<bits/stdc++.h>
+using namespace std;
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define endl '\n'
+
+const int mx=1e6+123;
+vector<int> divisor[mx];
+
+int main()
+{
+    optimize();
+
+    int n;
+    cin>>n;
+
+    for(int i=1;i<=n;i++){//O(n)
+        for(int j=i;j<=n;j+=i){//ln(n)
+            divisor[j].push_back(i);
+        }
+    }
+
+    for(int i=1;i<=n;i++){
+        cout<<i<<" : ";
+        for(auto u:divisor[i]){
+            cout<<u<<" ";
+        }
+        cout<<endl;
+    }
+
+    return 0;
+}//Total Time complexity=O(nln(n))
+ 
+Output:
+10
+1: 1
+2: 1 2
+3: 1 3
+4: 1 2 4
+5: 1 5
+6: 1 2 3 6
+7: 1 7
+8: 1 2 4 8
+9: 1 3 9
+10: 1 2 5 10
